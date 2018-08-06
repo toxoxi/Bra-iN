@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
+    "buefy": "^0.6.6",
     "hoek": "^5.0.3",
     "mavon-editor": "^2.6.15",
     "node-gyp": "^3.7.0",
@@ -20,7 +21,6 @@
     "@vue/cli-plugin-eslint": "^3.0.0-rc.10",
     "@vue/cli-service": "^3.0.0-rc.10",
     "@vue/eslint-config-prettier": "^3.0.0-rc.10",
-    "bulma": "^0.7.1",
     "node-sass": "^4.9.2",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.16"
