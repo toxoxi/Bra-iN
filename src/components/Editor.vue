@@ -5,18 +5,18 @@
 </template>
 
 <script>
-import Vue from "vue";
-import mavonEditor from "mavon-editor";
-import "mavon-editor/dist/css/index.css";
+import Vue from 'vue'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
-Vue.use(mavonEditor);
+Vue.use(mavonEditor)
 
 export default {
-  name: "Editor",
+  name: 'Editor',
   data() {
     return {
-      value: ""
-    };
+      value: ''
+    }
   }
-};
+}
 </script>
