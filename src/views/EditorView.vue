@@ -1,7 +1,6 @@
 <template>
   <div>
-    <editor-tag-input :tagsHistory="tagsHistory"></editor-tag-input>
-    <div>hi</div>
+    <editor-tag-input :data="tagData.tags"></editor-tag-input>
     <markdown-editor></markdown-editor>
   </div>
 </template>
@@ -18,14 +17,10 @@ export default {
   },
   data() {
     return {
-      tagsHistory: [
-        'Vue',
-        'React',
-        'Angular',
-        'webpack',
-        'ES2016',
-        'async/await'
-      ]
+      tagData: {
+        userId: 1,
+        tags: ['Vue', 'React', 'Angular', 'webpack', 'ES2016', 'async/await']
+      }
     }
   }
 }
