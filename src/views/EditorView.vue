@@ -1,7 +1,7 @@
 <template>
   <div>
     <editor-tag-input :data="tagData.tags"></editor-tag-input>
-    <markdown-editor></markdown-editor>
+    <markdown-editor :content="content"></markdown-editor>
   </div>
 </template>
 
@@ -17,6 +17,7 @@ export default {
   },
   data() {
     return {
+      content: '',
       tagData: {
         userId: 1,
         tags: ['Vue', 'React', 'Angular', 'webpack', 'ES2016', 'async/await']

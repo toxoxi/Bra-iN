@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <mavon-editor v-model="value" language="en" :toolbars="toolbars" />
+    <mavon-editor v-model="text" language="en" :toolbars="toolbars" />
   </div>
 </template>
 
@@ -13,9 +13,12 @@ Vue.use(mavonEditor)
 
 export default {
   name: 'Editor',
+  props: {
+    content: String
+  },
   data() {
     return {
-      value: '',
+      text: this.content,
       toolbars: {
         bold: true,
         italic: true,
