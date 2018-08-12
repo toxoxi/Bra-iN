@@ -12,7 +12,7 @@ import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
 
 export default {
-  name: 'Editor',
+  name: 'NoteEditor',
   props: {
     content: String
   },

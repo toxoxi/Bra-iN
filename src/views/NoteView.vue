@@ -1,20 +1,20 @@
 <template>
   <div>
     <note-tag-input :data="note.tags"></note-tag-input>
-    <markdown-editor :content="content"></markdown-editor>
+    <note-editor :content="content"></note-editor>
   </div>
 </template>
 
 <script>
 import NoteTagInput from '@/components/Note/NoteTagInput'
-import MarkdownEditor from '@/components/MarkdownEditor'
+import NoteEditor from '@/components/Note/NoteEditor'
 import Notes from '@/modules/Notes'
 
 export default {
   name: 'NoteView',
   components: {
     NoteTagInput,
-    MarkdownEditor
+    NoteEditor
   },
   data() {
     return {
