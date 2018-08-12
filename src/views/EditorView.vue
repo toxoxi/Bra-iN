@@ -1,6 +1,6 @@
 <template>
   <div>
-    <editor-tag-input :data="tagData.tags"></editor-tag-input>
+    <editor-tag-input :data="note.tags"></editor-tag-input>
     <markdown-editor :content="content"></markdown-editor>
   </div>
 </template>
@@ -8,6 +8,7 @@
 <script>
 import EditorTagInput from '@/components/Editor/EditorTagInput'
 import MarkdownEditor from '@/components/MarkdownEditor'
+import Notes from '@/modules/Notes'
 
 export default {
   name: 'EditorView',
@@ -18,11 +19,16 @@ export default {
   data() {
     return {
       content: '',
-      tagData: {
-        userId: 1,
-        tags: ['Vue', 'React', 'Angular', 'webpack', 'ES2016', 'async/await']
+      note: {
+        id: 1,
+        tags: []
       }
     }
+  },
+  async created() {
+    const tagData = await Notes.getTags(this.note.id)
+    console.log(tagData)
+    this.note.tags = tagData
   }
 }
 </script>
