@@ -6,7 +6,6 @@
         :data="filteredTags"
         autocomplete
         :allow-new="true"
-        field="user.first_name"
         icon="label"
         placeholder="Add a tag..."
         @typing="getFilteredTags">
@@ -18,6 +17,7 @@
 
 <script>
 export default {
+  name: 'NoteTagInput',
   props: {
     data: Array
   },

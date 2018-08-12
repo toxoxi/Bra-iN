@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'EditorTitle',
+  name: 'NoteTitle',
   data() {
     return {
       title: ''
