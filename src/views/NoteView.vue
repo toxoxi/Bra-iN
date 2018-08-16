@@ -3,12 +3,17 @@
     <note-tag-input
       :tags="note.tags"
       :tagHistory="user.tagHistory" />
-    <note-editor :content="content" />
+    <note-save-button @saveContent="saveContent"></note-save-button>
+    <div>{{ this.note.content }}</div>
+    <note-editor
+      v-model="note.content"
+      @saveContent="saveContent" />
   </div>
 </template>
 
 <script>
 import NoteTagInput from '@/components/Note/NoteTagInput'
+import NoteSaveButton from '@/components/Note/NoteSaveButton'
 import NoteEditor from '@/components/Note/NoteEditor'
 import Users from '@/modules/Users'
 import Notes from '@/modules/Notes'
@@ -17,16 +22,17 @@ export default {
   name: 'NoteView',
   components: {
     NoteTagInput,
+    NoteSaveButton,
     NoteEditor
   },
   data() {
     return {
-      content: '',
       user: {
         name: 'yorori',
         tagHistory: []
       },
       note: {
+        content: '',
         id: 'rDcqF8uaVAFfF4bbgJSj',
         tags: []
       }
@@ -38,6 +44,14 @@ export default {
 
     const tagHistory = await Users.getTagHistory(this.user.name)
     this.user.tagHistory = tagHistory
+  },
+  methods: {
+    saveContent() {
+      Notes.saveContent(this.note).catch(e => {
+        window.alert(e)
+        console.error(e)
+      })
+    }
   }
 }
 </script>

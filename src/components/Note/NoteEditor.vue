@@ -1,6 +1,11 @@
 <template>
   <div id="main">
-    <mavon-editor v-model="text" language="en" :toolbars="toolbars" />
+    <mavon-editor
+      @save="$emit('saveContent')"
+      @change="updateContent"
+      :value="value"
+      :toolbars="toolbars"
+      language="en" />
   </div>
 </template>
 
@@ -13,12 +18,14 @@ Vue.use(mavonEditor)
 
 export default {
   name: 'NoteEditor',
-  props: {
-    content: String
+  props: ['value'],
+  methods: {
+    updateContent(val) {
+      this.$emit('input', val)
+    }
   },
   data() {
     return {
-      text: this.content,
       toolbars: {
         bold: true,
         italic: true,
