@@ -39,8 +39,13 @@ export default {
     }
   },
   async created() {
-    const tagData = await Notes.getTags(this.note.id)
-    this.note.tags = tagData
+    const noteId = this.note.id
+    const [tags, content] = await Promise.all([
+      Notes.getTags(noteId),
+      Notes.getContent(noteId)
+    ])
+    this.note.tags = tags
+    this.note.content = content
 
     const tagHistory = await Users.getTagHistory(this.user.name)
     this.user.tagHistory = tagHistory
