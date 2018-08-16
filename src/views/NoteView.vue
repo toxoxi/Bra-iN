@@ -3,7 +3,7 @@
     <note-tag-input
       :tags="note.tags"
       :tagHistory="user.tagHistory" />
-    <note-save-button @saveContent="saveContent" />
+    <note-save-button @saveNote="saveNote" />
     <div>{{ this.note.content }}</div>
     <note-editor
       v-model="note.content"
@@ -49,13 +49,16 @@ export default {
 
     const tagHistory = await Users.getTagHistory(this.user.name)
     this.user.tagHistory = tagHistory
+
+    Notes.getNotesByUserName(this.user.name)
   },
   methods: {
-    saveContent() {
+    saveNote() {
       Notes.saveContent(this.note).catch(e => {
         window.alert(e)
         console.error(e)
       })
+      Users.saveTags(this.note)
     }
   }
 }

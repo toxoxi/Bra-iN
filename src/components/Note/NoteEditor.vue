@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <mavon-editor
-      @save="$emit('saveContent')"
+      @save="$emit('saveNote')"
       @change="updateContent"
       :value="value"
       :toolbars="toolbars"
