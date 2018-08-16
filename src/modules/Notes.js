@@ -15,7 +15,8 @@ export default {
   },
   async saveContent(note) {
     await notesRef.doc(note.id).update({
-      content: note.content
+      content: note.content,
+      tags: note.tags
     })
   }
 }
