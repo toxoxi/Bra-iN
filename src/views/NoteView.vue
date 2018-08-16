@@ -7,7 +7,7 @@
     <div>{{ this.note.content }}</div>
     <note-editor
       v-model="note.content"
-      @saveContent="saveContent" />
+      @saveNote="saveNote" />
   </div>
 </template>
 
@@ -49,8 +49,6 @@ export default {
 
     const tagHistory = await Users.getTagHistory(this.user.name)
     this.user.tagHistory = tagHistory
-
-    Notes.getNotesByUserName(this.user.name)
   },
   methods: {
     saveNote() {
