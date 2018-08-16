@@ -51,12 +51,19 @@ export default {
     this.user.tagHistory = tagHistory
   },
   methods: {
-    saveNote() {
+    async saveNote() {
       Notes.saveContent(this.note).catch(e => {
         window.alert(e)
         console.error(e)
       })
-      Users.saveTags(this.note)
+      await Users.saveTags(this.user.name, this.note.tags)
+
+      /*
+      TODO:
+      tagHistoryの取得方法の変更
+      無駄なクエリを減らしたいけど、saveTagsの返り値をtagHistoryにするのも微妙
+      */
+      this.user.tagHistory = await Users.getTagHistory(this.user.name)
     }
   }
 }
