@@ -19,19 +19,19 @@
 export default {
   name: 'NoteTagInput',
   props: {
-    data: Array
+    tags: Array,
+    tagHistory: Array
   },
   data() {
     return {
-      filteredTags: this.data,
-      isSelectOnly: false,
-      tags: []
+      filteredTags: this.tagHistory,
+      isSelectOnly: false
     }
   },
   methods: {
     getFilteredTags(text) {
-      this.filteredTags = this.data.filter(option =>
-        option.toLowerCase().indexOf(text.toLowerCase)
+      this.filteredTags = this.tagHistory.filter(
+        option => option.toLowerCase().indexOf(text.toLowerCase()) >= 0
       )
     }
   }
