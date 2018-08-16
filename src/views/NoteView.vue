@@ -1,9 +1,12 @@
 <template>
   <div>
+    <note-title
+      v-model="note.title" />
     <note-tag-input
       :tags="note.tags"
       :tagHistory="user.tagHistory" />
-    <note-save-button @saveNote="saveNote" />
+    <note-save-button
+      @saveNote="saveNote" />
     <div>{{ this.note.content }}</div>
     <note-editor
       v-model="note.content"
@@ -12,6 +15,7 @@
 </template>
 
 <script>
+import NoteTitle from '@/components/Note/NoteTitle'
 import NoteTagInput from '@/components/Note/NoteTagInput'
 import NoteSaveButton from '@/components/Note/NoteSaveButton'
 import NoteEditor from '@/components/Note/NoteEditor'
@@ -21,6 +25,7 @@ import Notes from '@/modules/Notes'
 export default {
   name: 'NoteView',
   components: {
+    NoteTitle,
     NoteTagInput,
     NoteSaveButton,
     NoteEditor
@@ -32,6 +37,7 @@ export default {
         tagHistory: []
       },
       note: {
+        title: '',
         content: '',
         id: 'rDcqF8uaVAFfF4bbgJSj',
         tags: []
@@ -40,10 +46,12 @@ export default {
   },
   async created() {
     const noteId = this.note.id
-    const [tags, content] = await Promise.all([
+    const [title, tags, content] = await Promise.all([
+      Notes.getTitle(noteId),
       Notes.getTags(noteId),
       Notes.getContent(noteId)
     ])
+    this.note.title = title
     this.note.tags = tags
     this.note.content = content
 
