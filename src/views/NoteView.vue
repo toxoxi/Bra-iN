@@ -3,7 +3,7 @@
     <note-tag-input
       :tags="note.tags"
       :tagHistory="user.tagHistory" />
-    <note-save-button @saveContent="saveContent"></note-save-button>
+    <note-save-button @saveContent="saveContent" />
     <div>{{ this.note.content }}</div>
     <note-editor
       v-model="note.content"
