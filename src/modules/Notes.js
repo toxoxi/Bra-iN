@@ -3,20 +3,9 @@ import firestore from '@/firebase/firestore-init'
 const notesRef = firestore.collection('notes')
 
 export default {
-  async getTitle(noteId) {
+  async getNote(noteId) {
     const querySnapshot = await notesRef.doc(noteId).get()
-    const title = querySnapshot.data().title
-    return title
-  },
-  async getTags(noteId) {
-    const querySnapshot = await notesRef.doc(noteId).get()
-    const tags = querySnapshot.data().tags
-    return tags
-  },
-  async getContent(noteId) {
-    const querySnapshot = await notesRef.doc(noteId).get()
-    const content = querySnapshot.data().content
-    return content
+    return querySnapshot.data()
   },
   async saveContent(note) {
     await notesRef.doc(note.id).update({

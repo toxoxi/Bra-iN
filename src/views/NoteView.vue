@@ -45,18 +45,8 @@ export default {
     }
   },
   async created() {
-    const noteId = this.note.id
-    const [title, tags, content] = await Promise.all([
-      Notes.getTitle(noteId),
-      Notes.getTags(noteId),
-      Notes.getContent(noteId)
-    ])
-    this.note.title = title
-    this.note.tags = tags
-    this.note.content = content
-
-    const tagHistory = await Users.getTagHistory(this.user.name)
-    this.user.tagHistory = tagHistory
+    this.note = await Notes.getNote(this.note.id)
+    this.user.tagHistory = await Users.getTagHistory(this.user.name)
   },
   methods: {
     async saveNote() {
