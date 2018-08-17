@@ -45,7 +45,11 @@ export default {
     }
   },
   async created() {
-    this.note = await Notes.getNote(this.note.id)
+    const noteData = await Notes.getNote(this.note.id)
+    this.note.title = noteData.title
+    this.note.content = noteData.content
+    this.note.tags = noteData.tags
+
     this.user.tagHistory = await Users.getTagHistory(this.user.name)
   },
   methods: {
@@ -62,6 +66,11 @@ export default {
       無駄なクエリを減らしたいけど、saveTagsの返り値をtagHistoryにするのも微妙
       */
       this.user.tagHistory = await Users.getTagHistory(this.user.name)
+
+      this.$toast.open({
+        message: 'Saved!',
+        type: 'is-success'
+      })
     }
   }
 }
