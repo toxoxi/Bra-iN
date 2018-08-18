@@ -3,6 +3,15 @@ import firestore from '@/firebase/firestore-init'
 const notesRef = firestore.collection('notes')
 
 export default {
+  async createNote(data) {
+    notesRef.add({
+      title: data.title,
+      tags: data.tags,
+      user: {
+        name: 'yorori'
+      }
+    })
+  },
   async getNote(noteId) {
     const querySnapshot = await notesRef.doc(noteId).get()
     return querySnapshot.data()

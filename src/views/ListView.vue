@@ -1,19 +1,27 @@
 <template>
   <div>
-    <list-card
-      v-for="card in cards"
-      :key="card.id"
-      :card="card"/>
+    <new-note-button />
+    <div class="columns">
+      <div
+        v-for="card in cards"
+        :key="card.id"
+        class="column is-4">
+        <list-card
+          :card="card" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import NewNoteButton from '@/components/common/NewNoteButton'
 import ListCard from '@/components/List/ListCard'
 import Notes from '@/modules/Notes'
 
 export default {
   name: 'ListView',
   components: {
+    NewNoteButton,
     ListCard
   },
   data() {
