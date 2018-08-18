@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import IndexView from '@/views/IndexView'
-import NoteListView from '@/views/NoteListView'
+import ListView from '@/views/ListView'
 import NoteView from '@/views/NoteView'
 
 Vue.use(Router)
@@ -17,8 +17,8 @@ export default new Router({
     },
     {
       path: '/list',
-      name: 'NoteListView',
-      component: NoteListView
+      name: 'ListView',
+      component: ListView
     },
     {
       path: '/note',
