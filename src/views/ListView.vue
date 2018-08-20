@@ -1,6 +1,6 @@
 <template>
   <div>
-    <new-note-button />
+    <new-note-button :tagHistory="user.tagHistory"/>
     <div v-for="(cards, index) in arrangeList" :key=index class="columns">
       <div
         v-for="card in cards"
@@ -14,8 +14,9 @@
 </template>
 
 <script>
-import NewNoteButton from '@/components/common/NewNoteButton'
+import NewNoteButton from '@/components/common/NewNote/NewNoteButton'
 import ListCard from '@/components/List/ListCard'
+import Users from '@/modules/Users'
 import Notes from '@/modules/Notes'
 
 export default {
@@ -26,18 +27,24 @@ export default {
   },
   data() {
     return {
+      user: {
+        name: 'yorori',
+        tagHistory: []
+      },
       cards: [],
       sliceNum: 3
     }
   },
   async created() {
-    const notes = await Notes.getUserNotes('yorori')
+    const notes = await Notes.getUserNotes(this.user.name)
     this.cards = notes.map(note => ({
       id: note.id,
       title: note.title,
       content: note.content,
       tags: note.tags
     }))
+
+    this.user.tagHistory = await Users.getTagHistory(this.user.name)
   },
   computed: {
     arrangeList: function() {

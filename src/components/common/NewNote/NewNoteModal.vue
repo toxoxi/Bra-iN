@@ -13,6 +13,11 @@
             required>
           </b-input>
         </b-field>
+        <b-field label="Tags">
+          <tag-input
+            :tags="tags"
+            :tagHistory="tagHistory"/>
+        </b-field>
       </section>
       <footer class="modal-card-foot">
         <button class="button" type="button" @click="$parent.close()">Close</button>
@@ -23,12 +28,20 @@
 </template>
 
 <script>
+import TagInput from '@/components/common/TagInput'
+
 export default {
   name: 'NewNoteModal',
+  components: {
+    'tag-input': TagInput
+  },
+  props: {
+    tagHistory: Array
+  },
   data() {
     return {
       title: '',
-      tags: ['smartphone', 'OnePlus']
+      tags: []
     }
   },
   methods: {
