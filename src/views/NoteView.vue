@@ -2,7 +2,7 @@
   <div>
     <note-title
       v-model="note.title" />
-    <tag-input
+    <app-tag-input
       :tags="note.tags"
       :tagHistory="user.tagHistory" />
     <note-save-button
@@ -18,7 +18,7 @@
 import NoteTitle from '@/components/Note/NoteTitle'
 import NoteSaveButton from '@/components/Note/NoteSaveButton'
 import NoteEditor from '@/components/Note/NoteEditor'
-import TagInput from '@/components/common/TagInput'
+import AppTagInput from '@/components/common/AppTagInput'
 import Users from '@/modules/Users'
 import Notes from '@/modules/Notes'
 
@@ -28,7 +28,7 @@ export default {
     NoteTitle,
     NoteSaveButton,
     NoteEditor,
-    TagInput
+    AppTagInput
   },
   data() {
     return {

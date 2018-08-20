@@ -1,23 +1,18 @@
 <template>
-  <section>
-    <b-field label="Tags">
-      <b-taginput
-        v-model="tags"
-        :data="filteredTags"
-        autocomplete
-        :allow-new="true"
-        icon="label"
-        placeholder="Add a tag..."
-        @typing="getFilteredTags">
-      </b-taginput>
-    </b-field>
-    <pre style="max-height: 400px"><b>Tags:</b>{{ tags }}</pre>
-  </section>
+  <b-taginput
+    v-model="tags"
+    :data="filteredTags"
+    autocomplete
+    :allow-new="true"
+    icon="label"
+    placeholder="Add a tag..."
+    @typing="getFilteredTags">
+  </b-taginput>
 </template>
 
 <script>
 export default {
-  name: 'NoteTagInput',
+  name: 'AppTagInput',
   props: {
     tags: Array,
     tagHistory: Array
@@ -37,3 +32,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.dropdown-content {
+  position: fixed;
+}
+</style>

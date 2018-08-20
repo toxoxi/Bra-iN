@@ -14,7 +14,7 @@
           </b-input>
         </b-field>
         <b-field label="Tags">
-          <tag-input
+          <app-tag-input
             :tags="tags"
             :tagHistory="tagHistory"/>
         </b-field>
@@ -28,12 +28,12 @@
 </template>
 
 <script>
-import TagInput from '@/components/common/TagInput'
+import AppTagInput from '@/components/common/AppTagInput'
 
 export default {
   name: 'NewNoteModal',
   components: {
-    'tag-input': TagInput
+    AppTagInput
   },
   props: {
     tagHistory: Array
