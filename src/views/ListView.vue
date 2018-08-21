@@ -7,6 +7,7 @@
         :key="card.id"
         class="column">
         <list-card
+          @onEdit="onEdit(card.id)"
           :card="card" />
       </div>
     </div>
@@ -45,6 +46,11 @@ export default {
     }))
 
     this.user.tagHistory = await Users.getTagHistory(this.user.name)
+  },
+  methods: {
+    onEdit(id) {
+      this.$router.push({ path: `/note/${id}` })
+    }
   },
   computed: {
     arrangeList: function() {

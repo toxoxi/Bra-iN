@@ -4,6 +4,7 @@
       <p class="card-header-title">
         {{ card.title }}
       </p>
+      <button @click="$emit('onEdit')" class="button">Edit</button>
     </header>
     <div class="card-content">
       <div class="content">
