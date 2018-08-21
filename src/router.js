@@ -21,7 +21,7 @@ export default new Router({
       component: ListView
     },
     {
-      path: '/note',
+      path: '/note/:id',
       name: 'NoteView',
       component: NoteView
     }

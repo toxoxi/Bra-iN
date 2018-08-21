@@ -45,6 +45,8 @@ export default {
     }
   },
   async created() {
+    this.note.id = this.$route.params.id
+
     const noteData = await Notes.getNote(this.note.id)
     this.note.title = noteData.title
     this.note.content = noteData.content

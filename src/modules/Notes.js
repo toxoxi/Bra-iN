@@ -4,13 +4,14 @@ const notesRef = firestore.collection('notes')
 
 export default {
   async createNote(data) {
-    notesRef.add({
+    const createdNoteRef = await notesRef.add({
       title: data.title,
       tags: data.tags,
       user: {
         name: 'yorori'
       }
     })
+    return createdNoteRef.id
   },
   async getNote(noteId) {
     const querySnapshot = await notesRef.doc(noteId).get()

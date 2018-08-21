@@ -29,7 +29,7 @@ export default {
     }
   },
   methods: {
-    createNote(title, tags) {
+    async createNote(title, tags) {
       const data = {
         title,
         tags,
@@ -37,8 +37,8 @@ export default {
           name: 'yorori'
         }
       }
-      Notes.createNote(data)
-      this.$router.push({ path: 'note' })
+      const createdNoteId = await Notes.createNote(data)
+      this.$router.push({ path: `/note/${createdNoteId}` })
     }
   }
 }
