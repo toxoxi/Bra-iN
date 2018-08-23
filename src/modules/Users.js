@@ -3,6 +3,20 @@ import firestore from '@/firebase/firestore-init'
 const usersRef = firestore.collection('users')
 
 export default {
+  async registerUser(user) {
+    const registerResult = usersRef
+      .doc(user.uid)
+      .set({
+        name: user.displayName,
+        mail: user.email,
+        tagHistory: []
+      })
+      .catch(err => {
+        console.error(err)
+        return null
+      })
+    return registerResult
+  },
   async getTagHistory(userName) {
     const querySnapshot = await usersRef.doc(userName).get()
     const tagHistory = querySnapshot.data().tagHistory

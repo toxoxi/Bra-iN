@@ -6,20 +6,23 @@
 
 <script>
 import firebase from 'firebase'
+import Users from '@/modules/Users'
 
 export default {
   name: 'SignInGoogleButton',
   methods: {
     async signinWithGoogle() {
       const provider = new firebase.auth.GoogleAuthProvider()
-      const result = await firebase
+      const authResult = await firebase
         .auth()
         .signInWithPopup(provider)
         .catch(err => {
           console.error(err)
-          return err
+          return null
         })
-      console.log(result)
+      if (authResult.additionalUserInfo.isNewUser) {
+        Users.registerUser(authResult.user)
+      }
     }
   }
 }
