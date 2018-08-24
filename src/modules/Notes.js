@@ -17,10 +17,8 @@ export default {
     const querySnapshot = await notesRef.doc(noteId).get()
     return querySnapshot.data()
   },
-  async getUserNotes(userName) {
-    const querySnapshot = await notesRef
-      .where('user.name', '==', userName)
-      .get()
+  async getUserNotes(uid) {
+    const querySnapshot = await notesRef.where('user.uid', '==', uid).get()
     return querySnapshot.docs.map(doc => {
       const data = doc.data()
       data.id = doc.id

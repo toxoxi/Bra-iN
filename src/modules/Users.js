@@ -17,19 +17,19 @@ export default {
       })
     return registerResult
   },
-  async getTagHistory(userName) {
-    const querySnapshot = await usersRef.doc(userName).get()
+  async getTagHistory(uid) {
+    const querySnapshot = await usersRef.doc(uid).get()
     const tagHistory = querySnapshot.data().tagHistory
     return tagHistory
   },
-  async saveTags(userName, tags) {
-    const tagHistory = await this.getTagHistory(userName)
+  async saveTags(uid, tags) {
+    const tagHistory = await this.getTagHistory(uid)
     tags.forEach(tag => {
       if (tagHistory.indexOf(tag) > 0) return
       tagHistory.push(tag)
     })
     tagHistory.sort()
 
-    await usersRef.doc(userName).update({ tagHistory })
+    await usersRef.doc(uid).update({ tagHistory })
   }
 }

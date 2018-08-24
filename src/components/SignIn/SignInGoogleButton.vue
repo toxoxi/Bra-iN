@@ -13,15 +13,22 @@ export default {
   methods: {
     async signinWithGoogle() {
       const provider = new firebase.auth.GoogleAuthProvider()
-      const authResult = await firebase
+      const userAuth = await firebase
         .auth()
         .signInWithPopup(provider)
         .catch(err => {
           console.error(err)
           return null
         })
-      if (authResult.additionalUserInfo.isNewUser) {
-        Users.registerUser(authResult.user)
+      if (userAuth || userAuth.additionalUserInfo.isNewUser) {
+        Users.registerUser(userAuth.user)
+      }
+
+      const user = firebase.auth().currentUser
+      if (user) {
+        this.$router.push({ path: `/list/${user.uid}` })
+      } else {
+        this.$router.push({ path: '/' })
       }
     }
   }

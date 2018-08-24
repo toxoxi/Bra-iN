@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       user: {
+        uid: '',
         name: 'yorori',
         tagHistory: []
       },
@@ -37,7 +38,9 @@ export default {
     }
   },
   async created() {
-    const notes = await Notes.getUserNotes(this.user.name)
+    this.user.uid = this.$route.params.uid
+
+    const notes = await Notes.getUserNotes(this.user.uid)
     this.cards = notes.map(note => ({
       id: note.id,
       title: note.title,
@@ -45,7 +48,7 @@ export default {
       tags: note.tags
     }))
 
-    this.user.tagHistory = await Users.getTagHistory(this.user.name)
+    this.user.tagHistory = await Users.getTagHistory(this.user.uid)
   },
   methods: {
     onEdit(id) {

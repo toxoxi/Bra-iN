@@ -22,7 +22,7 @@ export default new Router({
       component: SignInView
     },
     {
-      path: '/list',
+      path: '/list/:uid',
       name: 'ListView',
       component: ListView
     },
