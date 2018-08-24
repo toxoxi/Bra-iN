@@ -31,5 +31,8 @@ export default new Router({
       name: 'NoteView',
       component: NoteView
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    return savedPosition ? savedPosition : { x: 0, y: 0 }
+  }
 })
