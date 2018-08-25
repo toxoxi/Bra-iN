@@ -25,11 +25,20 @@ export default {
       }
 
       const user = firebase.auth().currentUser
+
+      const uidCookie = this.createUidCookie(user.uid)
+      document.cookie = uidCookie
+
       if (user) {
-        this.$router.push({ path: `/list/${user.uid}` })
+        this.$router.push({ path: `/list/` })
       } else {
         this.$router.push({ path: '/' })
       }
+    },
+    createUidCookie(uid, day = 30) {
+      const maxAge = day * 24 * 60 * 60
+      const encodedUid = encodeURIComponent(uid)
+      return `brain_uid=${encodedUid}; max-age=${maxAge}`
     }
   }
 }

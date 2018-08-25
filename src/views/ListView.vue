@@ -38,7 +38,11 @@ export default {
     }
   },
   async created() {
-    this.user.uid = this.$route.params.uid
+    const uid = document.cookie.replace(
+      /(?:(?:^|.*;\s*)brain_uid\s*=\s*([^;]*).*$)|^.*$/,
+      '$1'
+    )
+    this.user.uid = uid
 
     const notes = await Notes.getUserNotes(this.user.uid)
     this.cards = notes.map(note => ({
