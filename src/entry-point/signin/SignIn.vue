@@ -8,7 +8,7 @@
 import SignInGoogleButton from '@/components/SignIn/SignInGoogleButton'
 
 export default {
-  name: 'SignInView',
+  name: 'SignIn',
   components: {
     SignInGoogleButton
   }

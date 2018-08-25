@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import IndexView from '@/views/IndexView'
-import SignInView from '@/views/SignInView'
 import ListView from '@/views/ListView'
 import NoteView from '@/views/NoteView'
 
@@ -15,11 +14,6 @@ export default new Router({
       path: '/',
       name: 'IndexView',
       component: IndexView
-    },
-    {
-      path: '/signin',
-      name: 'SignInView',
-      component: SignInView
     },
     {
       path: '/list',

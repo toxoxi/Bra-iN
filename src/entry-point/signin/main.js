@@ -1,6 +1,5 @@
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import SignIn from '@/entry-point/signin/SignIn.vue'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 
@@ -13,6 +12,5 @@ Vue.config.productionTip = false
 Vue.use(Buefy)
 
 new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+  render: h => h(SignIn)
+}).$mount('#app-signin')
