@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import IndexView from '@/views/IndexView'
 import ListView from '@/views/ListView'
 import NoteView from '@/views/NoteView'
+import NotFoundView from '@/views/NotFoundView'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/note/:id',
       name: 'NoteView',
       component: NoteView
+    },
+    {
+      path: '*',
+      name: 'NotFountView',
+      component: NotFoundView
     }
   ],
   scrollBehavior(to, from, savedPosition) {
