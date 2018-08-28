@@ -29,16 +29,28 @@ export default {
       const uidCookie = this.createUidCookie(user.uid)
       document.cookie = uidCookie
 
+      const params = this.getUrlParams()
+      const fromPath = params.p
       if (user) {
-        this.$router.push({ path: `/list/` })
+        location.replace('/' + fromPath)
       } else {
-        this.$router.push({ path: '/' })
+        this.$emit('signinFailed') // TODO ここかく & signin View 作る
       }
     },
     createUidCookie(uid, day = 30) {
       const maxAge = day * 24 * 60 * 60
       const encodedUid = encodeURIComponent(uid)
       return `brain_uid=${encodedUid}; max-age=${maxAge}`
+    },
+    getUrlParams() {
+      const params = {}
+      const hash = location.search.slice(1).split('&')
+
+      for (let param of hash) {
+        const kv = param.split('=') // key valueに分割
+        params[kv[0]] = kv[1] // key:value の連想配列として格納
+      }
+      return params
     }
   }
 }
